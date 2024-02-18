@@ -1,10 +1,7 @@
 package main
 
-import "github.com/labstack/echo/v4"
+import "echo-api-example/server"
 
 func main() {
-	e := echo.New()
-	RegisterRoutes(e)
-
-	e.Logger.Fatal(e.Start(":3000"))
+	server.Start()
 }
