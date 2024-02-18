@@ -26,18 +26,19 @@ func NewRequestError(status int, msg string) *RequestError {
 
 func GetAddressBalance(c echo.Context) error {
 	fmt.Println("Running...")
-	result_c := make(chan *big.Int, 1)
-	error_c := make(chan *RequestError, 1)
+
+	result_c := make(chan *big.Int, 2)
+	error_c := make(chan *RequestError, 2)
 	ctx := c.(*endpoints.ApiContext)
 	eth_client := ctx.EthClient()
 	
+	var qs QS
+	err := ctx.Bind(&qs); if err != nil {
+		error_c <- NewRequestError(http.StatusBadRequest, "bad request")
+	}
+
 	go func ()  {
 		time.Sleep(10 * time.Second)
-	
-		var qs QS
-		err := c.Bind(&qs); if err != nil {
-			error_c <- NewRequestError(http.StatusBadRequest, "bad request")
-		}
 	
 		balance, err := eth_client.GetBalance(qs.Address)
 		if err != nil {
