@@ -2,15 +2,10 @@ package server
 
 import (
 	"echo-api-example/blockchain"
+	"echo-api-example/endpoints"
 
 	"github.com/labstack/echo/v4"
 )
-
-/// Custom context that extends the default Echo context
-type ApiContext struct {
-	echo.Context
-	eth_client * blockchain.EthClient
-}
 
 func Start(eth_client * blockchain.EthClient) {
 	e := echo.New()
@@ -20,7 +15,7 @@ func Start(eth_client * blockchain.EthClient) {
 	// Extend the default echo context
 	e.Use(func(next echo.HandlerFunc) echo.HandlerFunc {
 		return func(c echo.Context) error {
-			cc := &ApiContext{c, eth_client}
+			cc := endpoints.NewApiContext(c, eth_client)
 			return next(cc)
 		}
 	})
