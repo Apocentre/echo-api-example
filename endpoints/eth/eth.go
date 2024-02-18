@@ -1,7 +1,6 @@
 package eth
 
 import (
-	"fmt"
 	"net/http"
 
 	"echo-api-example/endpoints"
@@ -14,7 +13,6 @@ type QS struct {
 }
 
 func GetAddressBalance(c echo.Context) error {
-	fmt.Println("Running...")
 	ctx := c.(*endpoints.ApiContext)
 
 	var qs QS
