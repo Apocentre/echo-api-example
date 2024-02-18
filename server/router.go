@@ -9,5 +9,8 @@ import (
 
 func RegisterRoutes(e *echo.Echo) {
 	e.GET("/hello", hello.GetHelloWorld)
-	e.GET("/eth/balance", eth.GetAddressBalance)
+
+	// ETH routes
+	eth_group := e.Group("/eth")
+	eth_group.GET("/balance", eth.GetAddressBalance)
 }
