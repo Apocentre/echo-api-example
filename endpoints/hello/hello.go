@@ -1,4 +1,4 @@
-package endpoints
+package hello
 
 import (
 	"net/http"
@@ -6,6 +6,6 @@ import (
 	"github.com/labstack/echo/v4"
 )
 
-func HelloWorld(ctx echo.Context) error {
+func GetHelloWorld(ctx echo.Context) error {
 	return ctx.String(http.StatusOK, "hello, world!")
 }
