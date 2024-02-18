@@ -9,7 +9,7 @@ import (
 )
 
 type QS struct {
-  address string `query:"address"`
+  Address string `query:"address"`
 }
 
 func GetAddressBalance(c echo.Context) error {
@@ -20,7 +20,7 @@ func GetAddressBalance(c echo.Context) error {
     return c.String(http.StatusBadRequest, "bad request")
 	}
 
-	balance, err := ctx.EthClient().GetBalance(qs.address)
+	balance, err := ctx.EthClient().GetBalance(qs.Address)
 	if err != nil {
 		return err
 	}
