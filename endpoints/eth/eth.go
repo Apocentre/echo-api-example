@@ -28,7 +28,7 @@ func GetAddressBalance(c echo.Context) error {
 	fmt.Println("Running...")
 
 	result_c := make(chan *big.Int, 2)
-	error_c := make(chan *RequestError, 2)
+	error_c := make(chan *RequestError, 1)
 	ctx := c.(*endpoints.ApiContext)
 	eth_client := ctx.EthClient()
 	
@@ -56,5 +56,4 @@ func GetAddressBalance(c echo.Context) error {
 	case <- c.Request().Context().Done():
 		return nil
 	}
-	
 }
