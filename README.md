@@ -1,7 +1,6 @@
 # echo-api-example
 A simple Go Api using the Echo framework
 
-
 ## Run
 
 To run the server in dev mode use the following steps:
